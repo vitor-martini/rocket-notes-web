@@ -42,12 +42,13 @@ export const Menu = styled.ul`
 
 export const Search = styled.div`
   grid-area: search;
-  background-color: yellow;
+  padding: 64px 64px 0;
 `;
 
 export const Content = styled.div`
   grid-area: content;
-  background-color: green;
+  padding: 32px 64px;
+  overflow-y: auto;
 `;
 
 export const NewNote = styled.button`

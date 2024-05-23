@@ -21,7 +21,7 @@ export default createGlobalStyle`
   }
 
   a {
-    text-decoration: nome;
+    text-decoration: none;
   }
 
   button, a {
