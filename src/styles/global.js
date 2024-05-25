@@ -17,7 +17,7 @@ export default createGlobalStyle`
   body, input, button, textarea {
      font-family: "Roboto Slab", serif;
      font-size: 16px;
-     outline: nome;
+     outline: none;
   }
 
   a {

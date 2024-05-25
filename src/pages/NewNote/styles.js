@@ -5,21 +5,32 @@ export const Container = styled.div`
   height: 100vh;
 
   display: grid;
-  grid-template-rows: 105px auto;
+  grid-template-rows: 88px auto;
   grid-template-areas: 
   "header"
-  "content"
+  "content";
+
+  > main {
+    grid-area: content;
+    overflow-y: auto;
+  }
+  
+  .tag-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
 `;
 
 export const Form = styled.form`
   max-width: 550px;
-  margin: 38px auto;
+  margin: 16px auto;
 
   > header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 36px;
+    margin-bottom: 16px;
 
     a {
       font-size: 20px;
