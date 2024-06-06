@@ -1,9 +1,7 @@
 import { Container } from "../../components/TextArea/styles"
 
-export function TextArea({ value, ...rest}) {
+export function TextArea({...rest }) {
   return (
-    <Container {...rest}>
-      { value }
-    </Container>
+    <Container {...rest} />
   )
 }
