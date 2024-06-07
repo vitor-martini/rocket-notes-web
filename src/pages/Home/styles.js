@@ -33,7 +33,7 @@ export const Brand = styled.div`
 export const Menu = styled.ul`
   grid-area: menu;
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
-  padding-top: 64px;
+  padding-top: 32px;
   text-align: center;
 
   > li {
@@ -43,12 +43,12 @@ export const Menu = styled.ul`
 
 export const Search = styled.div`
   grid-area: search;
-  padding: 64px 64px 0;
+  padding: 32px 64px 0;
 `;
 
 export const Content = styled.div`
   grid-area: content;
-  padding: 32px 64px;
+  padding: 0 64px;
   overflow-y: auto;
 `;
 

@@ -43,5 +43,5 @@ export const NavButtons = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.6rem
+  gap: 16px;
 `

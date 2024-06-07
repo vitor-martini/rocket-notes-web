@@ -21,7 +21,6 @@ export function Details() {
 
     try {
       await api.delete(`/notes/${data.id}`)
-      alert("Nota excluída com sucesso!")
       navigation("/")
     } catch(error) {
       if(error.response) {

@@ -26,15 +26,7 @@ export const Form = styled.form`
   max-width: 550px;
   margin: 16px auto;
 
-  > header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  > h1 {
     margin-bottom: 16px;
-
-    a {
-      font-size: 20px;
-      color: ${({ theme }) => theme.COLORS.GRAY_100}
-    }
   }
 `;

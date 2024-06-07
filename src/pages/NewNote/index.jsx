@@ -5,7 +5,6 @@ import { TextArea } from "../../components/TextArea";
 import { Section } from "../../components/Section";
 import { NoteItem } from "../../components/NoteItem";
 import { Button } from "../../components/Button";
-import { Link } from 'react-router-dom'
 import { useState } from "react";
 import { api } from "../../services/api"
 
@@ -79,10 +78,7 @@ export function NewNote() {
       <Header />
       <main>
         <Form>
-          <header>
-            <h1>Criar nota</h1>
-            <Link to="/">Voltar</Link>
-          </header>
+          <h1>Criar nota</h1>
           <Input
             placeholder="Título"
             onChange={e => setTitle(e.target.value)}

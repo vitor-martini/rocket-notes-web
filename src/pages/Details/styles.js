@@ -29,11 +29,11 @@ export const Links = styled.ul`
 
 export const Content = styled.div`
   max-width: 550px;
-  margin: 1.6rem auto;
+  margin: 16px auto;
 
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 16px;
 
   > button:first-child {
     align-self: end;
