@@ -39,7 +39,7 @@ export const Profile = styled(Link)`
   }
 `;
 
-export const Logout = styled.button`
+export const Button = styled.button`
   border: none;
   background: none; 
 
@@ -52,3 +52,10 @@ export const Logout = styled.button`
     }
   }
 `;
+
+export const NavButtons = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.6rem
+`

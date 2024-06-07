@@ -1,5 +1,6 @@
 import { RiShutDownLine } from "react-icons/ri";
-import { Container, Profile, Logout } from "./styles";
+import { TiHome } from "react-icons/ti";
+import { Container, Profile, NavButtons, Button } from "./styles";
 import { useAuth } from "../../hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
@@ -15,6 +16,10 @@ export function Header() {
     navigate("/")
   }
 
+  function handleBackHome() {
+    navigate("/")
+  }
+
   return (
     <Container>
       <Profile to="/profile">
@@ -26,9 +31,15 @@ export function Header() {
         </div>  
       </Profile>
 
-      <Logout onClick={handleSignOut}>
-        <RiShutDownLine/>
-      </Logout>
+      <NavButtons>
+        <Button onClick={handleBackHome}>
+          <TiHome />
+        </Button>
+
+        <Button onClick={handleSignOut}>
+          <RiShutDownLine/>
+        </Button>
+      </NavButtons>
     </Container>
   )
 }
