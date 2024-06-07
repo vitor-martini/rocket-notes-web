@@ -7,11 +7,14 @@ import { Note } from '../../components/Note';
 import { FiPlus, FiSearch } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
+import { useNavigate } from 'react-router-dom';
 
 export function Home() {
-
+  const navigate = useNavigate()
   const [tags, setTags] = useState([])
   const [selectedTags, setSelectedTags] = useState([])
+  const [search, setSearch] = useState("")
+  const [notes, setNotes] = useState([])
 
   function handleSelectedTag(tagName) {
     const isAlreadySelected = selectedTags.includes(tagName)
@@ -24,6 +27,10 @@ export function Home() {
     setSelectedTags(prevState => [...prevState, tagName])
   }
 
+  function handleDetails(noteId) {
+    navigate(`/details/${noteId}`)
+  }
+
   useEffect(() => {
     async function fetchTags(){
       const response = await api.get("/tags")
@@ -32,6 +39,15 @@ export function Home() {
 
     fetchTags()
   }, []) 
+
+  useEffect(() => {
+    async function fetchNotes(){
+      const result = await api.get(`/notes?title=${search}&tags=${selectedTags}`)
+      setNotes(result.data)
+    }
+
+    fetchNotes()
+  }, [search, selectedTags])
 
   return (
     <Container>
@@ -60,18 +76,22 @@ export function Home() {
       </Menu>
       
       <Search>
-        <Input placeholder="Pesquisar pelo título" icon={ FiSearch }/>
+        <Input 
+          placeholder="Pesquisar pelo título" icon={ FiSearch }
+          onChange={e => setSearch(e.target.value)}
+        />
       </Search>
 
       <Content>
         <Section title="Minhas notas">
-          <Note data={{
-            title: 'React',
-            tags: [
-              { id: '1', name: 'react'},
-              { id: '2', name: 'xesq'}
-            ]
-          }}></Note>
+          {
+            notes && notes.map(note => (
+              <Note 
+                key={note.id}
+                onClick={() => handleDetails(note.id)}
+                data={note}/>
+            ))
+          }
         </Section>
       </Content>
 
