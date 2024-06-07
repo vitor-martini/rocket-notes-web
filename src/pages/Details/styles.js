@@ -29,7 +29,7 @@ export const Links = styled.ul`
 
 export const Content = styled.div`
   max-width: 550px;
-  margin: 0 auto;
+  margin: 1.6rem auto;
 
   display: flex;
   flex-direction: column;
@@ -49,3 +49,10 @@ export const Content = styled.div`
     text-align: justify;
   }
 `;
+
+export const NoteHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+

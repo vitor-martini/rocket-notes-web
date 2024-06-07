@@ -1,33 +1,88 @@
-import { Container, Links, Content } from "./styles";
-import { Button } from "../../components/Button";
+import { Container, Links, Content, NoteHeader } from "./styles";
 import { Section } from "../../components/Section";
 import { Tag } from "../../components/Tag";
-import { TextButton } from "../../components/TextButton";
+import { IconButton } from "../../components/IconButton";
 import { Header } from "../../components/Header";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { api } from "../../services/api";
+import { FaTrashAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export function Details() {
+  const navigation = useNavigate()
+  const params = useParams();
+  const [data, setData] = useState({})
+
+  async function handleDeleteNote() {
+    const confirm = window.confirm("Deseja realmente excluir?")
+
+    if(!confirm) return
+
+    try {
+      await api.delete(`/notes/${data.id}`)
+      alert("Nota excluída com sucesso!")
+      navigation("/")
+    } catch(error) {
+      if(error.response) {
+        alert(error.response.data.message)
+      } else {
+        alert("Não foi possível excluir a nota.")
+      }
+    }
+  }
+
+  useEffect(() => {
+    async function fetchNote() {
+      const result = await api.get(`/notes/${params.id}`)
+      setData(result.data)
+    }
+
+    fetchNote()
+  }, [])
+
   return(
     <Container>
       <Header/>
       <main>
-        <Content>
-          <TextButton title="Excluir nota" />
-          <h1>Introdução ao React</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit aut in facilis. Laborum aspernatur modi placeat minus ipsa, odit tempora sit ipsam architecto asperiores dolorum illum et aliquam culpa at.tur modi placeat minus ipsa, odit tempora sit ipsam architecto asperiores dolorum illum et aliquam culpa at.</p>
-          <Section title="Links úteis">
-            <Links>
-              <li><a href="#">https://app.rocketseat.com.br/home</a></li>
-              <li><a href="#">https://app.rocketseat.com.br/home</a></li>
-            </Links>
-          </Section>
+        {
+          data.title &&
+          <Content>
+            <NoteHeader>
+              <h1>{data.title}</h1>
+                <IconButton onClick={handleDeleteNote}>
+                <FaTrashAlt size={30} />
+              </IconButton>
+            </NoteHeader>
+            <p>{data.description}</p>
+            {
+              data.links && data.links.length > 0 &&
+              <Section title="Links úteis">
+                <Links>
+                  {
+                    data.links && data.links.map(link => (
+                      <li key={link.id}><a href={link.url} target="_blank">{link.url}</a></li>
+                    ))
+                  }
+                </Links>
+              </Section>
+            }
 
-          <Section title="Marcadores">
-            <Tag title="nodejs"/>
-            <Tag title="expres"/>        
-          </Section>
-
-          <Button title="Voltar" />
-        </Content>
+            {
+              data.tags && data.tags.length > 0 &&
+              <Section title="Marcadores">
+                {
+                  data.tags && data.tags.map(tag => (
+                    <Tag
+                      key={tag.id}
+                      title={tag.name}
+                    />
+                  ))
+                }
+              </Section>
+            }
+          </Content>
+        }
       </main>
     </Container>
   )

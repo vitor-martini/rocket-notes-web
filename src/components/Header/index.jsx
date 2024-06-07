@@ -1,10 +1,11 @@
 import { RiShutDownLine } from "react-icons/ri";
 import { TiHome } from "react-icons/ti";
-import { Container, Profile, NavButtons, Button } from "./styles";
+import { Container, Profile, NavButtons } from "./styles";
 import { useAuth } from "../../hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
 import avatarPlaceholder from "../../assets/avatar_placeholder.svg"
+import { IconButton } from "../IconButton";
 
 export function Header() {
   const navigate = useNavigate();
@@ -24,7 +25,6 @@ export function Header() {
     <Container>
       <Profile to="/profile">
         <img src={avatarUrl} alt={`Foto de ${user.Profile}`} />
-
         <div>
           <span>Bem-vindo,</span>  
           <strong>{user.name}</strong>
@@ -32,14 +32,14 @@ export function Header() {
       </Profile>
 
       <NavButtons>
-        <Button onClick={handleBackHome}>
+        <IconButton onClick={handleBackHome}>
           <TiHome />
-        </Button>
-
-        <Button onClick={handleSignOut}>
+        </IconButton>
+        <IconButton onClick={handleSignOut}>
           <RiShutDownLine/>
-        </Button>
+        </IconButton>
       </NavButtons>
+
     </Container>
   )
 }
