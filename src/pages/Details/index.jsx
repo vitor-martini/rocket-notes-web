@@ -35,6 +35,10 @@ export function Details() {
     async function fetchNote() {
       const result = await api.get(`/notes/${params.id}`)
       setData(result.data)
+
+      if(!result.data.id) {
+        navigation("/")
+      }
     }
 
     fetchNote()
@@ -44,44 +48,41 @@ export function Details() {
     <Container>
       <Header/>
       <main>
-        {
-          data.title &&
-          <Content>
-            <NoteHeader>
-              <h1>{data.title}</h1>
-                <IconButton onClick={handleDeleteNote}>
-                <FaTrashAlt size={30} />
-              </IconButton>
-            </NoteHeader>
-            <p>{data.description}</p>
-            {
-              data.links && data.links.length > 0 &&
-              <Section title="Links úteis">
-                <Links>
-                  {
-                    data.links && data.links.map(link => (
-                      <li key={link.id}><a href={link.url} target="_blank">{link.url}</a></li>
-                    ))
-                  }
-                </Links>
-              </Section>
-            }
-
-            {
-              data.tags && data.tags.length > 0 &&
-              <Section title="Marcadores">
+        <Content>
+          <NoteHeader>
+            <h1>{data.title}</h1>
+              <IconButton onClick={handleDeleteNote}>
+              <FaTrashAlt size={30} />
+            </IconButton>
+          </NoteHeader>
+          <p>{data.description}</p>
+          {
+            data.links && data.links.length > 0 &&
+            <Section title="Links úteis">
+              <Links>
                 {
-                  data.tags && data.tags.map(tag => (
-                    <Tag
-                      key={tag.id}
-                      title={tag.name}
-                    />
+                  data.links && data.links.map(link => (
+                    <li key={link.id}><a href={link.url} target="_blank">{link.url}</a></li>
                   ))
                 }
-              </Section>
-            }
-          </Content>
-        }
+              </Links>
+            </Section>
+          }
+
+          {
+            data.tags && data.tags.length > 0 &&
+            <Section title="Marcadores">
+              {
+                data.tags && data.tags.map(tag => (
+                  <Tag
+                    key={tag.id}
+                    title={tag.name}
+                  />
+                ))
+              }
+            </Section>
+          }
+        </Content>
       </main>
     </Container>
   )
