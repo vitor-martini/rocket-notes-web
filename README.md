@@ -1,8 +1,15 @@
-# React + Vite
+# Rocket Notes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the frontend for the "rocket-notes" application, a platform designed for registering and categorizing notes by tags. The primary objective of this project is to practice and improve skills in React.
+## Features
+- Register new notes
+- Categorize notes by tags
+- View and manage your notes
+## Demonstration
 
-Currently, two official plugins are available:
+![Demonstration](./demo.gif) 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
+- React
+- JavaScript
+- HTML
